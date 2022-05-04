@@ -1,5 +1,6 @@
 import userRoutes from "./users-routes.js";
 import authRoutes from "./auth-routes.js";
+import jowelRoutes from "./jowels-routes.js";
 
 export const renderRoutes = [
   {
@@ -11,6 +12,7 @@ export const renderRoutes = [
   },
   ...Object.values(userRoutes),
   ...Object.values(authRoutes),
+  ...Object.values(jowelRoutes),
 ];
 
 export default (fastify, opts, next) => {
