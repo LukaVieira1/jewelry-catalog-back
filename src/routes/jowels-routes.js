@@ -11,7 +11,10 @@ export default {
   Create: {
     method: "POST",
     url: "/jowels",
-    preHandler: [upload.single("image")],
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    preHandler: upload.single("image"),
     handler: JowelController.create,
   },
   Delete: {

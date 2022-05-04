@@ -1,21 +1,23 @@
 import { prisma } from "../helpers/utils.js";
 
 export const create = async (req, reply) => {
+  const { name, description, acessory, quality } = req.body;
+  const file = req.file;
+  console.log(req.file);
   try {
-    const { name, description, acessory, quality } = req.body;
-    const file = req.file;
-    const jowel = await prisma.jowel.create({
+    const jowel = await prisma.jewel.create({
       data: {
         name,
         description,
         acessory,
         quality,
-        user_id: req.user.id,
+        // user_id: req.user.id,
         img: file.path,
       },
     });
     return reply.status(201).send(jowel);
   } catch (error) {
+    console.log(error);
     reply.status(500).send({ error: "Deu problema mermão" });
   }
 };
@@ -23,7 +25,7 @@ export const create = async (req, reply) => {
 export const del = async (req, reply) => {
   const { id } = req.params;
   try {
-    const jowel = await prisma.jowel.delete({
+    const jowel = await prisma.jewel.delete({
       where: {
         id: Number(id),
       },
@@ -40,7 +42,7 @@ export const del = async (req, reply) => {
 
 export const getAll = async (req, reply) => {
   try {
-    const jowels = await prisma.jowel.findMany({
+    const jowels = await prisma.jewel.findMany({
       include: {
         user: {
           select: {
