@@ -11,7 +11,7 @@ export const create = async (req, reply) => {
         description,
         acessory,
         quality,
-        // user_id: req.user.id,
+        user_id: req.user.id,
         img: file.path,
       },
     });

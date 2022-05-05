@@ -1,7 +1,7 @@
 import fastify from "fastify";
 import helmet from "fastify-helmet";
 import multer from "fastify-multer";
-import fastifyStatic from "fastify-static";
+import fastifyStatic from "@fastify/static";
 import path from "path";
 import cors from "fastify-cors";
 
