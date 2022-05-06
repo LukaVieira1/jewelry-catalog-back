@@ -6,13 +6,14 @@ import {
 } from "../helpers/utils.js";
 
 export const signup = async (req, reply) => {
-  const { email, password: pass } = req.body;
+  const { email, password: pass, name } = req.body;
 
   try {
     const password = await hashPassword(pass);
 
     const { password: hashedPassword, ...user } = await prisma.user.create({
       data: {
+        name,
         email,
         password,
       },
