@@ -15,7 +15,7 @@ model User {
   name     String? @db.VarChar(255)
   email    String  @unique @db.VarChar(255)
   password String
-  jwels Jewel[]
+  jewels Jewel[]
   createdAt DateTime @default(now()) @db.Timestamp(6)
 }
 
@@ -25,9 +25,10 @@ model Jewel {
   description String @db.VarChar(100)
   acessory String @db.VarChar(50)
   quality String @db.VarChar(50)
+  price Int
   img String
   user_id Int 
-  jewel User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id])
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @updatedAt
 }

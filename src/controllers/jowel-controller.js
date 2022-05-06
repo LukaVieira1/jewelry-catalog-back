@@ -1,9 +1,8 @@
 import { prisma } from "../helpers/utils.js";
 
 export const create = async (req, reply) => {
-  const { name, description, acessory, quality } = req.body;
+  const { name, description, acessory, quality, price } = req.body;
   const file = req.file;
-  console.log(req.file);
   try {
     const jowel = await prisma.jewel.create({
       data: {
@@ -11,6 +10,7 @@ export const create = async (req, reply) => {
         description,
         acessory,
         quality,
+        price: Number(price),
         user_id: req.user.id,
         img: file.path,
       },
@@ -47,8 +47,6 @@ export const getAll = async (req, reply) => {
         user: {
           select: {
             name: true,
-            username: true,
-            email: true,
             createdAt: true,
           },
         },
@@ -61,6 +59,7 @@ export const getAll = async (req, reply) => {
       jowels,
     });
   } catch (error) {
+    console.log(error);
     reply.status(500).send({ error: "Deu problema mermão" });
   }
 };

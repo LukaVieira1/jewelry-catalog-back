@@ -24,7 +24,11 @@ app.register(cors, {
 });
 
 app.register(multer.contentParser);
-app.register(helmet);
+
+app.register(helmet, {
+  crossOriginResourcePolicy: false,
+});
+
 app.register(routes);
 
 export default app;
