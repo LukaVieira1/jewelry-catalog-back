@@ -6,6 +6,9 @@
   "author": "Luka Vieira Iribarrem <lvieira14@gmail.com>",
   "license": "MIT",
   "type": "module",
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "scripts": {
     "start": "npx prisma migrate deploy && npx prisma db seed && node src/index.js",
     "dev": "nodemon src/index.js",
